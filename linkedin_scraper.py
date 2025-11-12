@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import time
 
 # Accepts the job search page URL and returns a list of job page URLs.
 def retrieve_job_urls(job_search_url):
@@ -89,30 +90,78 @@ def scrape_job(job_url):
 
 
 # Calling the functions
-public_job_search_url = "https://www.linkedin.com/jobs/search?keywords=Software%2BEngineer&location=New%20York%2C%20New%20York%2C%20United%20States&geoId=102571732&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0"
+public_job_search_url_fisrt =  "https://www.linkedin.com/jobs/search/?currentJobId=4331885855&geoId=103736294&keywords=Software%2BEngineer&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true&trk=public_jobs_jobs-search-bar_search-submit"
+#"https://www.linkedin.com/jobs/search?keywords=Software%2BEngineer&location=New%20York%2C%20New%20York%2C%20United%20States&geoId=102571732&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0&start=60"
 
 print("Starting job retrieval from LinkedIn search URL...")
 
-job_urls = retrieve_job_urls(public_job_search_url)
+def retrieve_job_urls(job_search_url):
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    response = requests.get(job_search_url, headers=headers)
 
-print(f"Retrieved {len(job_urls)} job URLsn")
+    if response.status_code != 200:
+        print(f"⚠️ Failed to retrieve {job_search_url}: HTTP {response.status_code}")
+        return []
 
-scraping_limit = 10
-jobs_to_scrape = job_urls[:scraping_limit]
+    soup = BeautifulSoup(response.text, "html.parser")
+    job_urls = []
 
-print(f"Scraping {len(jobs_to_scrape)} jobs...n")
+    # Job URLs are contained in <a> tags with this class
+    job_link_elements = soup.select("a.base-card__full-link")
+    for link in job_link_elements:
+        job_url = link.get("href", "").split("?")[0]
+        if job_url and job_url not in job_urls:
+            job_urls.append(job_url)
 
+    return job_urls
+job_urls = retrieve_job_urls(public_job_search_url_fisrt)
+
+def scrape_all_sections(base_search_url, max_pages=5, delay=3):
+    all_job_urls = []
+    all_uls= []
+    JOBS_PER_PAGE = 59  # LinkedIn public job pages show 60 results per page
+
+    for page in range(max_pages):
+        paginated_url = f"{base_search_url}&start={page * JOBS_PER_PAGE}"
+        all_uls.append(paginated_url)
+        job_urls = retrieve_job_urls(paginated_url)
+
+        if not job_urls:
+            print("🚫 No jobs found — stopping pagination.")
+            break
+
+        all_job_urls.extend(job_urls)
+        time.sleep(delay)  # Avoid rate limits
+
+    return all_uls
+
+sections_urls = scrape_all_sections(public_job_search_url_fisrt, max_pages=16)
+
+# Calling the functions
 jobs = []
-for job_url in jobs_to_scrape:
-    print(f"Starting data extraction on {job_url}")
 
-    job = scrape_job(job_url)
-    jobs.append(job)
+for public_job_search_url in sections_urls:
+        print("Starting job retrieval from LinkedIn search URL...")
 
-    print(f"Job scraped")
+        job_urls = retrieve_job_urls(public_job_search_url)
+
+        print(f"Retrieved {len(job_urls)} job URLsn")
+
+        scraping_limit = 10
+        jobs_to_scrape = job_urls[:scraping_limit]
+
+        print(f"Scraping {len(jobs_to_scrape)} jobs...n")
+
+        for job_url in jobs_to_scrape:
+            print(f"Starting data extraction on {job_url}")
+
+            job = scrape_job(job_url)
+            jobs.append(job)
+
+            print(f"Job scraped")
 
 print(f"nExporting {len(jobs)} scraped jobs to JSON")
-file_name = "jobs.json"
+file_name = "Denver.json"
 with open(file_name, "w", encoding="utf-8") as file:
     json.dump(jobs, file, indent=4, ensure_ascii=False)
 
