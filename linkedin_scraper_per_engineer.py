@@ -10,11 +10,13 @@ import random
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 MAX_PAGES = 1
 JOBS_PER_PAGE = 60
-SCRAPING_LIMIT = 10
-DELAY_RANGE = (3, 7)  # seconds between requests
-OUTPUT_FILE = "EngineerJobs.json"
+SCRAPING_LIMIT = 60
+DELAY_RANGE = (1, 3)  # seconds between requests
+OUTPUT_FILE = "EngineerJobs_ByLocation3.json"
 
-# List of engineering job positions to search for
+# --------------------------------------------
+# SEARCH PARAMETERS
+# --------------------------------------------
 positions = [
     "Software%20Engineer",
     "Data%20Engineer",
@@ -47,6 +49,27 @@ positions = [
     "Chemical%20Engineer",
     "Environmental%20Engineer"
 ]
+
+places_linkedin_ids_done = { 
+        'Elk Grove': 107065252, 'San Diego': 103918656, 'Sacramento': 101103472, 'Napa': 100341601,
+        'Ontario': 104039150, 'Anaheim': 103593861, 'Los Angeles': 103104382, 'San Bernardino': 100328150,
+        'Lathrop': 104822370, 'Loma Linda': 106087804, 'Bakersfield': 103987799, 'San Francisco': 102277331,
+
+}
+places_linkedin_ids ={ #put here the cities you want to run
+}
+places_linkedin_ids_to_be_done = {
+    'Elk Grove': 107065252, 'San Diego': 103918656, 'Sacramento': 101103472, 'Napa': 100341601, #Blanca
+    'Ontario': 104039150, 'Anaheim': 103593861, 'Los Angeles': 103104382, 'San Bernardino': 100328150, #Blanca
+    'Lathrop': 104822370, 'Loma Linda': 106087804, 'Bakersfield': 103987799, 'San Francisco': 102277331, #Blanca
+    'Menlo Park': 105786169, 'Roseville': 102254190, 'Norwalk': 100317406, 'Tracy': 100762562, #Blanca
+    'National City': 101678651, 'Chino': 102784667, 'Oakland': 105883676, 'Orange County': 105621717, #Adeline
+    'Milpitas': 102068169, 'San Jose': 106233382, 'Solvang': 103813482, 'Gilroy': 100712040, # Adeline
+    'Redlands': 100504469, 'Oroville': 107178055, 'Santa Clara': 100075706, 'Chico': 103958324, # Sergio
+    'Davis': 102557838, 'Fountain Valley': 107169614, 'Ventura': 106095227, 'West Hollywood': 101578441,# Sergio
+    'Berkeley': 104481114, 'Whittier': 106764122, 'Apple Valley': 107099397, 'Redwood City': 107180219, # Enica
+    'Irvine': 103575230, 'Pomona': 104304551, 'Lancaster': 102139694, 'Colton': 101465942, 'Victorville': 104271920 #Enica
+}
 
 
 # --------------------------------------------
@@ -116,18 +139,18 @@ def scrape_job(session, job_url):
     return job
 
 
-def scrape_jobs_for_position(session, position):
-    """Scrape job listings for a given position title."""
+def scrape_jobs_for_position_and_location(session, position, place_name, geo_id):
+    """Scrape job listings for a given position and location."""
     base_search_url = (
         f"https://www.linkedin.com/jobs/search/?keywords={position}"
-        f"&geoId=103736294&trk=public_jobs_jobs-search-bar_search-submit"
+        f"&geoId={geo_id}&trk=public_jobs_jobs-search-bar_search-submit"
     )
 
     all_jobs = []
 
     for page in range(MAX_PAGES):
         paginated_url = f"{base_search_url}&start={page * JOBS_PER_PAGE}"
-        print(f"🌐 Searching {position.replace('%20', ' ')} — Page {page + 1}/{MAX_PAGES}")
+        print(f"🌐 {place_name}: {position.replace('%20', ' ')} — Page {page + 1}/{MAX_PAGES}")
 
         job_urls = retrieve_job_urls(session, paginated_url)
         if not job_urls:
@@ -139,6 +162,7 @@ def scrape_jobs_for_position(session, position):
             job_data = scrape_job(session, job_url)
             if job_data:
                 job_data["searched_position"] = position.replace("%20", " ")
+                job_data["searched_location"] = place_name
                 all_jobs.append(job_data)
 
             delay = random.uniform(*DELAY_RANGE)
@@ -155,19 +179,27 @@ if __name__ == "__main__":
     session = requests.Session()
     all_jobs = []
 
-    print("🚀 Starting LinkedIn Engineer Job Scraper...\n")
+    print("🚀 Starting LinkedIn Engineer Job Scraper (by position + location)...\n")
 
     for pos in positions:
         print(f"\n==============================")
-        print(f"🔎 Searching for {pos.replace('%20', ' ')} jobs...")
+        print(f"🔎 Searching for {pos.replace('%20', ' ')} across all locations...")
         print(f"==============================")
 
-        jobs = scrape_jobs_for_position(session, pos)
-        all_jobs.extend(jobs)
+        for place_name, geo_id in places_linkedin_ids.items():
+            print(f"\n📍 Now scraping in: {place_name} (geoId={geo_id})")
 
-        delay = random.uniform(*DELAY_RANGE)
-        print(f"🌙 Cooling down for {delay:.1f}s before next position...\n")
-        time.sleep(delay)
+            jobs = scrape_jobs_for_position_and_location(session, pos, place_name, geo_id)
+            all_jobs.extend(jobs)
+
+            delay = random.uniform(*DELAY_RANGE)
+            print(f"🌙 Cooling down for {delay:.1f}s before next location...\n")
+            time.sleep(delay)
+
+        # Extra pause after each position to reduce rate limiting risk
+        long_delay = random.uniform(5, 10)
+        print(f"😴 Finished {pos.replace('%20', ' ')} — waiting {long_delay:.1f}s before next position...\n")
+        time.sleep(long_delay)
 
     print(f"\n💾 Exporting {len(all_jobs)} scraped jobs to {OUTPUT_FILE}")
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
