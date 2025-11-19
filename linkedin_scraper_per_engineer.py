@@ -12,7 +12,7 @@ MAX_PAGES = 1
 JOBS_PER_PAGE = 60
 SCRAPING_LIMIT = 60
 DELAY_RANGE = (1, 3)  # seconds between requests
-OUTPUT_FILE = "EngineerJobs_ByLocation3.json"
+OUTPUT_FILE = "EngineerJobs_ByLocation4.json"
 
 # --------------------------------------------
 # SEARCH PARAMETERS
@@ -57,6 +57,7 @@ places_linkedin_ids_done = {
 
 }
 places_linkedin_ids ={ #put here the cities you want to run
+        'Menlo Park': 105786169, 'Roseville': 102254190, 'Norwalk': 100317406, 'Tracy': 100762562, #Blanca
 }
 places_linkedin_ids_to_be_done = {
     'Elk Grove': 107065252, 'San Diego': 103918656, 'Sacramento': 101103472, 'Napa': 100341601, #Blanca
