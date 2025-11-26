@@ -23,7 +23,7 @@ def month_to_year(min, max):
   return min_converted, max_converted
 
 # Main function
-def salary_conversion(min_sal, max_sal, unit_in, unit_out):
+def salary_conversion(min_sal, max_sal, unit_in, unit_out, hours_a_week):
   """
   Function receives a min, max salary and a unit_in and unit_out (h: hour, m: month, y:year)
   and returns the converted salary.
@@ -32,8 +32,9 @@ def salary_conversion(min_sal, max_sal, unit_in, unit_out):
   Arguments:
     min_sal: minimum salary
     max_sal: maximum salary
-    unit_in: unit of the salary (h: hour, m: month, y:year)
-    unit_out: desired unit of the salary (h: hour, m: month, y:year)
+    unit_in: unit of the salary (hour, month, year)
+    unit_out: desired unit of the salary (hour, month, year)
+    hours_a_week: number of hours to consider worked per week.
   Returns:
     converted_salary: converted salary: min_converted, max_converted
   """
@@ -52,10 +53,17 @@ def salary_conversion(min_sal, max_sal, unit_in, unit_out):
   # If unit change is needed: these are the supported pipelines, 
   # each option maps to the correspondent subfunctions.
   routes = {
-      ('h', 'y'): [hour_to_year],                  
-      ('h', 'm'): [hour_to_year, year_to_month],    
-      ('m', 'y'): [month_to_year],                  
-  }
+        ('hour', 'year'): [
+            lambda min, max: hour_to_year(min, max, hours_a_week)
+        ],
+        ('hour', 'month'): [
+            lambda min, max: hour_to_year(min, max, hours_a_week),
+            year_to_month
+        ],
+        ('month', 'year'): [
+            month_to_year
+        ],
+    }
 
   try:
       for function in routes[(unit_in, unit_out)]:
