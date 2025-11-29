@@ -1,2 +1,5 @@
 venv/
 *__pycache__*/
+
+# Other files to ignore
+corrupted_deduplicate_and_parsing_linkedin_json_fasttext.ipynb

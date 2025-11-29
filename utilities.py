@@ -1,6 +1,6 @@
 # Functions for salary conversion
 # Subfunctions called by main function
-def hour_to_year(min, max, hours_a_week= 40):
+def hour_to_year(min, max, hours_a_week):
   # Conversion from salary in currency/hour to currency/year.
   # Can change the number of working hours/week.
   weeks_per_year=52
@@ -22,6 +22,13 @@ def month_to_year(min, max):
   max_converted = max * months_per_year
   return min_converted, max_converted
 
+def year_to_hour(min, max, hours_a_week):
+  # Conversion from salary in currency/year to currency/hour.
+  weeks_per_year=52
+  min_converted = min / (weeks_per_year * hours_a_week )
+  max_converted = max / (weeks_per_year * hours_a_week )
+  return min_converted, max_converted
+
 # Main function
 def salary_conversion(min_sal, max_sal, unit_in, unit_out, hours_a_week):
   """
@@ -34,7 +41,7 @@ def salary_conversion(min_sal, max_sal, unit_in, unit_out, hours_a_week):
     max_sal: maximum salary
     unit_in: unit of the salary (hour, month, year)
     unit_out: desired unit of the salary (hour, month, year)
-    hours_a_week: number of hours to consider worked per week.
+    hours_a_week: number of hours to consider worked per week. 
   Returns:
     converted_salary: converted salary: min_converted, max_converted
   """
@@ -62,6 +69,13 @@ def salary_conversion(min_sal, max_sal, unit_in, unit_out, hours_a_week):
         ],
         ('month', 'year'): [
             month_to_year
+        ],
+        ('year', 'hour'): [
+            lambda min, max: year_to_hour(min, max, hours_a_week)
+        ],
+        ('month', 'hour'): [
+            month_to_year,                             # month -> year
+            lambda min, max: year_to_hour(min, max, hours_a_week), # year -> hour
         ],
     }
 
