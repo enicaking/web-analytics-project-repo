@@ -61,21 +61,21 @@ def salary_conversion(min_sal, max_sal, unit_in, unit_out, hours_a_week):
   # each option maps to the correspondent subfunctions.
   routes = {
         ('hour', 'year'): [
-            lambda min, max: hour_to_year(min, max, hours_a_week)
+            lambda mn, mx: hour_to_year(mn, mx, hours_a_week)
         ],
         ('hour', 'month'): [
-            lambda min, max: hour_to_year(min, max, hours_a_week),
+            lambda mn, mx: hour_to_year(mn, mx, hours_a_week),
             year_to_month
         ],
         ('month', 'year'): [
             month_to_year
         ],
         ('year', 'hour'): [
-            lambda min, max: year_to_hour(min, max, hours_a_week)
+            lambda mn, mx: year_to_hour(mn, mx, hours_a_week)
         ],
         ('month', 'hour'): [
             month_to_year,                             # month -> year
-            lambda min, max: year_to_hour(min, max, hours_a_week), # year -> hour
+            lambda mn, mx: year_to_hour(mn, mx, hours_a_week), # year -> hour
         ],
     }
 

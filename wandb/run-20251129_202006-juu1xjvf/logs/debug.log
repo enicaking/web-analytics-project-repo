@@ -1,0 +1,32 @@
+2025-11-29 20:20:06,690 INFO    Thread-71 (_run_job):52720 [wandb_setup.py:_flush():80] Current SDK version is 0.23.0
+2025-11-29 20:20:06,690 INFO    Thread-71 (_run_job):52720 [wandb_setup.py:_flush():80] Configure stats pid to 52720
+2025-11-29 20:20:06,690 INFO    Thread-71 (_run_job):52720 [wandb_setup.py:_flush():80] Loading settings from C:\Users\adeli\.config\wandb\settings
+2025-11-29 20:20:06,690 INFO    Thread-71 (_run_job):52720 [wandb_setup.py:_flush():80] Loading settings from C:\Users\adeli\Documents 4-Q1\Web Analytics\Final Project GitHub\web-analytics-project-repo\wandb\settings
+2025-11-29 20:20:06,690 INFO    Thread-71 (_run_job):52720 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-11-29 20:20:06,691 INFO    Thread-71 (_run_job):52720 [wandb_init.py:setup_run_log_directory():713] Logging user logs to C:\Users\adeli\Documents 4-Q1\Web Analytics\Final Project GitHub\web-analytics-project-repo\wandb\run-20251129_202006-juu1xjvf\logs\debug.log
+2025-11-29 20:20:06,691 INFO    Thread-71 (_run_job):52720 [wandb_init.py:setup_run_log_directory():714] Logging internal logs to C:\Users\adeli\Documents 4-Q1\Web Analytics\Final Project GitHub\web-analytics-project-repo\wandb\run-20251129_202006-juu1xjvf\logs\debug-internal.log
+2025-11-29 20:20:06,692 INFO    Thread-71 (_run_job):52720 [wandb_init.py:monkeypatch_ipython():632] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x000001F4078B4110>
+2025-11-29 20:20:06,692 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():840] calling init triggers
+2025-11-29 20:20:06,692 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():845] wandb.init called with sweep_config: {'colsample_bytree': 0.8, 'early_stopping_rounds': 40, 'gamma': 0, 'learning_rate': 0.05, 'max_depth': 6, 'min_child_weight': 3, 'num_boost_round': 800, 'reg_alpha': 0, 'reg_lambda': 1, 'subsample': 0.8}
+config: {'_wandb': {}}
+2025-11-29 20:20:06,694 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():888] starting backend
+2025-11-29 20:20:08,931 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():891] sending inform_init request
+2025-11-29 20:20:08,935 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():899] backend started and connected
+2025-11-29 20:20:08,942 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_config_callback():1385] config_cb None None {'colsample_bytree': 0.8, 'early_stopping_rounds': 40, 'gamma': 0, 'learning_rate': 0.05, 'max_depth': 6, 'min_child_weight': 3, 'num_boost_round': 800, 'reg_alpha': 0, 'reg_lambda': 1, 'subsample': 0.8}
+2025-11-29 20:20:08,944 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_label_probe_notebook():1323] probe notebook
+2025-11-29 20:20:08,950 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():969] updated telemetry
+2025-11-29 20:20:09,009 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():993] communicating run to backend with 90.0 second timeout
+2025-11-29 20:20:09,449 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():1040] starting run threads in backend
+2025-11-29 20:20:09,766 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_console_start():2504] atexit reg
+2025-11-29 20:20:09,766 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_redirect():2352] redirect: wrap_raw
+2025-11-29 20:20:09,767 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_redirect():2421] Wrapping output streams.
+2025-11-29 20:20:09,767 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_redirect():2444] Redirects installed.
+2025-11-29 20:20:09,768 INFO    Thread-71 (_run_job):52720 [wandb_init.py:init():1080] run started, returning control to user process
+2025-11-29 20:20:41,114 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_finish():2270] finishing run 100496657-universidad-carlos-iii-de-madrid/salary_prediction_xgb/juu1xjvf
+2025-11-29 20:20:41,115 INFO    Thread-71 (_run_job):52720 [jupyter.py:save_history():435] not saving jupyter history
+2025-11-29 20:20:41,116 INFO    Thread-71 (_run_job):52720 [jupyter.py:save_ipynb():359] not saving jupyter notebook
+2025-11-29 20:20:41,116 INFO    Thread-71 (_run_job):52720 [wandb_init.py:_jupyter_teardown():617] cleaning up jupyter logic
+2025-11-29 20:20:41,116 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_atexit_cleanup():2469] got exitcode: 0
+2025-11-29 20:20:41,116 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_restore():2451] restore
+2025-11-29 20:20:41,117 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_restore():2457] restore done
+2025-11-29 20:20:41,980 INFO    Thread-71 (_run_job):52720 [wandb_run.py:_footer_sync_info():3853] logging synced files

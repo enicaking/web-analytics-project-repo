@@ -1,0 +1,12 @@
+{"time":"2025-11-29T20:25:05.7796298+01:00","level":"INFO","msg":"stream: starting","core version":"0.23.0"}
+{"time":"2025-11-29T20:25:06.1224068+01:00","level":"INFO","msg":"stream: created new stream","id":"vc7922vp"}
+{"time":"2025-11-29T20:25:06.1231222+01:00","level":"INFO","msg":"handler: started","stream_id":"vc7922vp"}
+{"time":"2025-11-29T20:25:06.1259436+01:00","level":"INFO","msg":"stream: started","id":"vc7922vp"}
+{"time":"2025-11-29T20:25:06.1259436+01:00","level":"INFO","msg":"sender: started","stream_id":"vc7922vp"}
+{"time":"2025-11-29T20:25:06.1259436+01:00","level":"INFO","msg":"writer: started","stream_id":"vc7922vp"}
+{"time":"2025-11-29T20:25:42.3362086+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-29T20:25:42.5509812+01:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-11-29T20:25:42.5776607+01:00","level":"INFO","msg":"stream: closing","id":"vc7922vp"}
+{"time":"2025-11-29T20:25:42.5776607+01:00","level":"INFO","msg":"handler: closed","stream_id":"vc7922vp"}
+{"time":"2025-11-29T20:25:42.5793519+01:00","level":"INFO","msg":"sender: closed","stream_id":"vc7922vp"}
+{"time":"2025-11-29T20:25:42.5793519+01:00","level":"INFO","msg":"stream: closed","id":"vc7922vp"}

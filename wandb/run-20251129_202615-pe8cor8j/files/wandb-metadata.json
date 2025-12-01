@@ -1,0 +1,28 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "CPython 3.12.11",
+  "startedAt": "2025-11-29T19:26:15.995126Z",
+  "program": "c:\\Users\\adeli\\Documents 4-Q1\\Web Analytics\\Final Project GitHub\\web-analytics-project-repo\\XGBoost Linkedin data.ipynb",
+  "codePath": "c:\\Users\\adeli\\Documents 4-Q1\\Web Analytics\\Final Project GitHub\\web-analytics-project-repo\\XGBoost Linkedin data.ipynb",
+  "codePathLocal": "XGBoost Linkedin data.ipynb",
+  "git": {
+    "remote": "https://github.com/enicaking/web-analytics-project-repo.git",
+    "commit": "0b5bfa4a42b3a5e249007d54dafaa8d3ef0172a1"
+  },
+  "email": "100496657@alumnos.uc3m.es",
+  "root": "C:\\Users\\adeli\\Documents 4-Q1\\Web Analytics\\Final Project GitHub\\web-analytics-project-repo",
+  "host": "AdePortatil",
+  "executable": "c:\\Users\\adeli\\anaconda3\\envs\\dsnp1\\python.exe",
+  "cpu_count": 10,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "1023004372992",
+      "used": "506842279936"
+    }
+  },
+  "memory": {
+    "total": "16832106496"
+  },
+  "writerId": "xru7x9vi9e7yi3d21wyi3hkurc9o8vc1"
+}

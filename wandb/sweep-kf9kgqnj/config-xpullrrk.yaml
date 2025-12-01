@@ -1,0 +1,22 @@
+wandb_version: 1
+
+colsample_bytree:
+  value: 0.8
+early_stopping_rounds:
+  value: 40
+gamma:
+  value: 0
+learning_rate:
+  value: 0.03
+max_depth:
+  value: 6
+min_child_weight:
+  value: 1
+num_boost_round:
+  value: 800
+reg_alpha:
+  value: 0.5
+reg_lambda:
+  value: 3
+subsample:
+  value: 0.8

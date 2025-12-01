@@ -1,0 +1,1 @@
+{"val_rmse_log":0.5665499796425492,"_timestamp":1.7644444348824692e+09,"val_approx_mape":22.522896554639992,"_runtime":34,"best_iteration":796,"val_mae_log":0.2031277371811935,"_step":0,"_wandb":{"runtime":34},"best_val_rmse_log_xgb":0.5665499910129428,"val_r2_log":0.46700652678709254}
