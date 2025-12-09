@@ -4,9 +4,6 @@ venv/
 # Other files to ignore
 corrupted_deduplicate_and_parsing_linkedin_json_fasttext.ipynb
 
-# Avoid ignoring data files
-*.csv
-
 # Personal files
 Test_xgboost_version.ipynb
 wandb/
