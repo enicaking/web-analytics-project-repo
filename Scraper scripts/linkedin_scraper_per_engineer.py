@@ -56,7 +56,7 @@ places_linkedin_ids_done = {
         'Lathrop': 104822370, 'Loma Linda': 106087804, 'Bakersfield': 103987799, 'San Francisco': 102277331,
 
 }
-places_linkedin_ids ={ #put here the cities you want to run
+places_linkedin_ids ={ # Enter here the cities you want to run
         'Menlo Park': 105786169, 'Roseville': 102254190, 'Norwalk': 100317406, 'Tracy': 100762562, #Blanca
 }
 places_linkedin_ids_to_be_done = {
