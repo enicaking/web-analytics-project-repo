@@ -105,6 +105,8 @@ The performance of each model is measured by three key metrics: MAE, RMSE and R-
 
 SHAP is also used to determine feature importance.
 
+Interactive dashboard available to UC3M community at [this link](https://lookerstudio.google.com/reporting/163a0dbf-df24-46f6-b2fe-8bb538628789)
+
 ## Contributing
 
 You can contribute to this project by trying out different models, embeddings, or adding data sources!
